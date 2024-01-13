@@ -15,6 +15,7 @@ services:
       - DB_ADDR=postgres
       - DB_DATABASE=keycloak
       - DB_USER=keycloak
+      - JDBC_PARAMS="useSSL=false"
       - DB_PASSWORD=keycloak
       - PROXY_ADDRESS_FORWARDING=true
       - DEBUG=true 
