@@ -1,5 +1,11 @@
 # keycloak-integration
 
+_proxy_
+
+```bash
+docker build -t ui .
+```
+
 _docker-compose_
 ```yml
 ---
