@@ -3,7 +3,6 @@
 
 ```yml
 ---
----
 version: '3.8'
 services:
   keycloak:
