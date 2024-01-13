@@ -1,6 +1,5 @@
 # keycloak-integration
 
-
 ```yml
 ---
 version: '3.8'
@@ -58,3 +57,7 @@ _docs_
 1. https://hub.docker.com/r/jboss/keycloak
 2. https://www.keycloak.org/documentation.html
 ```
+_reference_
+
+![image](https://github.com/januo-org/keycloak-integration/assets/57703276/6313931f-e320-4179-83d7-71030a557811)
+
