@@ -75,16 +75,18 @@ official docker reference
 
 
 ```bash
-docker run -d -e POSTGRES_DB=keycloak \
+docker run --network keycloak -d --name db -e POSTGRES_DB=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=keycloak postgres:latest
+
+docker run --network keycloak -d -e POSTGRES_DB=keycloak \
            -e POSTGRES_USER=keycloak \
            -e POSTGRES_PASSWORD=keycloak \
            -e DB_VENDOR=POSTGRES \
            -e DB_ADDR=db \
            -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin \
+           -e JAVA_OPTS="-server -Xms1024m -Xmx4096m -XX:MetaspaceSize=512M -XX:MaxMetaspaceSize=1024m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true --add-exports=java.desktop/sun.awt=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.security=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.management/javax.management=ALL-UNNAMED --add-opens=java.naming/javax.naming=ALL-UNNAMED" \
            -p 8080:8080 \
            --name keycloak \
-           quay.io/keycloak/keycloak:23.0.4 start --http-port=8080 --http-enabled=true --http-relative-path=/auth --hostname-strict-https=false --hostname-strict=false --proxy=edge
+           quay.io/keycloak/keycloak:23.0.4 start --http-port=8080 --http-enabled=true --http-relative-path=/auth --hostname-strict-https=false --hostname-strict=true --hostname=dcm4che.januo.io  --proxy=edge
 
-
-docker run -d --name db -e POSTGRES_DB=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=keycloak postgres:latest
+docker run --network keycloak -d --name proxy -p 80:80 -p 443:443 jjino/nginx.dcm4che.januo.io 
 ```
