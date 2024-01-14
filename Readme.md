@@ -68,3 +68,23 @@ _docs_
 _reference_
 
 ![image](https://github.com/januo-org/keycloak-integration/assets/57703276/6313931f-e320-4179-83d7-71030a557811)
+
+
+
+official docker reference
+
+
+```bash
+docker run -d -e POSTGRES_DB=keycloak \
+           -e POSTGRES_USER=keycloak \
+           -e POSTGRES_PASSWORD=keycloak \
+           -e DB_VENDOR=POSTGRES \
+           -e DB_ADDR=db \
+           -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin \
+           -p 8080:8080 \
+           --name keycloak \
+           quay.io/keycloak/keycloak:23.0.4 start --http-port=8080 --http-enabled=true --http-relative-path=/auth --hostname-strict-https=false --hostname-strict=false --proxy=edge
+
+
+docker run -d --name db -e POSTGRES_DB=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=keycloak postgres:latest
+```
