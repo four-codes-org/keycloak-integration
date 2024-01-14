@@ -75,6 +75,7 @@ official docker reference
 
 
 ```bash
+docker network create keycloak
 docker run --network keycloak -d --name db -e POSTGRES_DB=keycloak -e POSTGRES_USER=keycloak -e POSTGRES_PASSWORD=keycloak postgres:latest
 
 docker run --network keycloak -d -e POSTGRES_DB=keycloak \
